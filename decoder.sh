@@ -1,9 +1,3 @@
-# TODO : use vim trick to able to print web instead of cmd
-# :g/\033[92m/$Format_start/   and   :g/\033[0m/$Format_end/
-# at cmd -> Format_start=\033[92m and format_end=\033[0m
-# at web -> Format_start=<html_green_tag> and format_end=<html_end_Tag>
-# then do something like if $2 web replace :\033[92m with <b>  and  \033[0m with <\b>/ 
-# 
 map["0x00"]="@"
 map["0x01"]="\033[92m((Pound_sign))\033[0m"
 map["0x02"]="\$"
@@ -178,3 +172,9 @@ echo ; echo
 echo "Message at a readable format :"
 echo --------------------------------
 echo -e  $out_string
+echo 
+echo 
+echo "Web format for emails"
+echo -------------------------
+#echo $out_string
+echo $out_string | sed 's|\\033\[92m|<b><font color="green">|g ; s|\\033\[0m|</font></b>|g'
